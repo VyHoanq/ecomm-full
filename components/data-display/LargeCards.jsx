@@ -30,7 +30,7 @@ export default function LargeCards() {
     },
   ];
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:text-sm md:text-base text-xs" >
       {orderStats.map((stat, i) => {
         return <LargeCard className="bg-stone-500" data={stat} key={i} />;
       })}
