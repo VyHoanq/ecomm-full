@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <div className="w-full">
         {/* Header */}
         <Navbar />
-        <main className="p-8 dark:bg-neutral-700 bg-slate-200  text-slate-50 min-h-screen mt-16 ml-52">{children}</main>
+        <main className="p-8 dark:bg-neutral-800 bg-slate-100  text-slate-50 min-h-screen mt-16 ml-52">{children}</main>
         {/* Main */}
       </div>
       {/* Main Body */}

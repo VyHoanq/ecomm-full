@@ -16,9 +16,9 @@ export default function ThemeSwitcherBtn() {
 
     return (
         <button
-            className={`w-fit p-2 rounded-md hover:scale-110 active:scale-100 transition-all duration-300 bg-neutral-900`}
+            className={`w-fit p-2 rounded-md hover:scale-110 active:scale-100 transition-all duration-300 dark:text-white text-black`}
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-            {theme === 'light' ? <Sun /> : <Moon />}
+            {theme === 'dark' ? <Sun /> : <Moon />}
         </button>
     )
 }

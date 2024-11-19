@@ -16,10 +16,10 @@ export default function CustomDataTable() {
         // setCurrentPage(page)
     }
     return (
-        <div>
-            <h2 className='text-xl font-bold mb-4'>Recent Orders</h2>
+        <div className='mt-4'>
+            <h2 className='text-xl font-bold mb-4 p-8 dark:text-slate-50 text-black'>Recent Orders</h2>
             {/* Table */}
-            <div className='p-8'>
+            <div className='p-4'>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
@@ -51,14 +51,14 @@ export default function CustomDataTable() {
                             {
                                 currentedDisplayed.map((item, i) => {
                                     return (
-                                        <tr key={i} className="bg-white border-b   hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <tr key={i} className="bg-white dark:bg-black text-black dark:text-white border-b   hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <td className="w-4 p-4">
                                                 <div className="flex items-center">
                                                     <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2  dark:border-gray-600" />
                                                     <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
                                                 </div>
                                             </td>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap ">
                                                 {item.id}
                                             </th>
                                             <td className="px-6 py-4">

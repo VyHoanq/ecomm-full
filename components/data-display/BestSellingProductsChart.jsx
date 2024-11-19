@@ -40,21 +40,21 @@ export default function BestBookProductsChart() {
     maintainAspectRatio: false, // Vô hiệu hóa tỷ lệ mặc định
     plugins: {
       legend: {
-        position: 'top', // Điều chỉnh vị trí legend
+        position: 'right', // Điều chỉnh vị trí legend
 
       },
     },
   };
 
   return (
-    <div className='dark:bg-black bg-slate-50 p-8 rounded-lg shadow-sm flex justify-center items-center min-h-[400px]'>
+    <div className='dark:bg-black bg-slate-50 p-8 rounded-lg shadow-xl flex justify-center items-center min-h-[400px]'>
       <div>
-        <h2 className='text-xl font-bold  text-slate-800 dark:text-slate-100 left-6 '>
-          Best Selling Products
+        <h2 className='text-xl font-bold  text-black dark:text-white left-6 '>
+          Best Selling Charts
         </h2>
         {/* Chart */}
         <div className='p-4' style={{ 'height': '350px', width: '350px' }} >
-          <Pie data={data} width={100} height={100} options={options} />
+          <Pie data={data} width={100} height={100} options={options} />  
         </div>
       </div>
     </div>

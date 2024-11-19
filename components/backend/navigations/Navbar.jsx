@@ -15,9 +15,9 @@ import ThemeSwitcherBtn from "@/components/theme/ThemeSwitcherBtn";
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between items-center bg-neutral-900 text-slate-50 h-20 py-4 px-8 fixed top-0 w-full z-50 left-52 right-10 sm:pr-[20rem]">
+    <div className="flex justify-between items-center bg-slate-50 dark:bg-neutral-900 text-slate-50 h-20 py-4 px-8 fixed top-0 w-full z-50 left-52 right-10 sm:pr-[20rem]">
       {/* Icon  */}
-      <button>
+      <button className="dark:text-white text-black">
         <AlignJustify />
       </button>
       {/* 3 Icons */}
@@ -27,7 +27,7 @@ export default function Navbar() {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-transparent rounded-lg">
-              <Bell />
+              <Bell className="dark:text-white text-black" />
               <span className="sr-only">Notifications</span>
               <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-white rounded-full -top-0 -end-0 dark:border-gray-900">9+</div>
             </button>
