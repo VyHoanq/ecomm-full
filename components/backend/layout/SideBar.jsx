@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import logo from "@/public/logo.png"
-import { Bolt, ChevronDownCircle, CircleChevronUp, Compass, LayoutDashboard, LayoutList, LogOutIcon, LucideExternalLink, MonitorUp, Package2, ScanSearch, SendToBack, Slack, Truck, User2, UserCircle2Icon, Warehouse } from "lucide-react";
+import { Bolt, BuildingIcon, ChevronDownCircle, CircleChevronUp, CircleDollarSignIcon, Compass, LayoutDashboard, LayoutList, LogOutIcon, LucideExternalLink, MonitorUp, Package2, ScanSearch, SendToBack, Slack, Truck, User2, UserCircle2Icon, Warehouse } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -41,6 +41,16 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       title: "Staffs",
       icon: User2,
       href: "/dashboard/staffs"
+    },
+    {
+      title: "Limi Community",
+      icon: BuildingIcon,
+      href: "/dashboard/limi-community"
+    },
+    {
+      title: "Wallet",
+      icon: CircleDollarSignIcon,
+      href: "/dashboard/wallet"
     },
     {
       title: "Settings",
@@ -81,7 +91,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
     },
   ]
   return (
-    <div className={showSidebar ? "sm:block mt-20 sm:mt-0 dark:bg-black  bg-white space-y-6 w-60 min-h-screen text-black dark:text-white font-bold fixed left-0 top-0 shadow-md z-50" : "mt-20 sm:mt-0 hidden sm:block dark:bg-black  bg-white space-y-6 w-60 min-h-screen text-black dark:text-white font-bold fixed left-0 top-0 shadow-md z-50 "
+    <div className={showSidebar ? "sm:block mt-20 sm:mt-0 dark:bg-black  bg-white space-y-6 w-60 h-screen text-black dark:text-white font-bold fixed left-0 top-0 shadow-md z-50 overflow-y-scroll" : "mt-20 sm:mt-0 hidden sm:block dark:bg-black  bg-white space-y-6 w-60 h-screen text-black dark:text-white font-bold fixed left-0 top-0 shadow-md z-50 overflow-y-scroll "
     } >
 
       <Link
