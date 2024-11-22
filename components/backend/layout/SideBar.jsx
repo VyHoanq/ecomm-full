@@ -87,7 +87,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
     {
       title: "Store Sidebar",
       icon: MonitorUp,
-      href: "/dashboard/store-sidebar"
+      href: "/dashboard/banners"
     },
   ]
   return (
