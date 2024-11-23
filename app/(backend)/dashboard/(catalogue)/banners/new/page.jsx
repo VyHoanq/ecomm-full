@@ -1,41 +1,38 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
 import ImageInput from '@/components/form/FormInput/ImageInput'
-import TextareaInput from '@/components/form/FormInput/TextAreaInput'
 import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
-import { generateSlug } from '@/lib/generateSlug'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-export default function NewCategory() {
+export default function NewBanner() {
   const [imageUrl, setImageUrl] = useState("")
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
   const [loading, setLoading] = useState(false)
+  const { register, reset, handleSubmit, formState: { errors } } = useForm()
   async function onSubmit(data) {
 
     setLoading(true)
-    const slug = generateSlug(data.title)
-    data.slug = slug
     data.imageUrl = imageUrl
     console.log(data)
-    makePostRequest(setLoading, 'api/categories', data, 'Category', reset,)
+    makePostRequest(setLoading, 'api/banners', data, 'Banner', reset,)
     setImageUrl("")
   }
   return (
     <>
-      <FormHeader title='Category' />
+      <FormHeader title='Banner' />
       <form onSubmit={handleSubmit(onSubmit)}
         className='w-full max-w-3xl mx-auto p-4 bg-neutral-50  border border-neutral-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-neutral-700 dark:border-neutral-600 my-3'
       >
 
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
-          <TextInput label="Category Title" name="title" register={register} errors={errors} isRequired={true} />
-          <TextareaInput label="Category Description" name="description" register={register} errors={errors} isRequired={true} />
-          <ImageInput label="Category Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="categoryImage" />
+          <TextInput label="Banner Title" name="title" register={register} errors={errors} isRequired={true} />
+          <TextInput label="Banner Link" name="link" type="url" register={register} errors={errors} isRequired={true} />
+          
+          <ImageInput label="Banner Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="bannerImage" />
         </div>
-        <SubmitButton isLoading={loading} buttonTitle='Create Category' loadingButtonTitle='Category' />
+        <SubmitButton isLoading={loading} buttonTitle='Create Banner' loadingButtonTitle='Banner' />
       </form>
     </>
   )

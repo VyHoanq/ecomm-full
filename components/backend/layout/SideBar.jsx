@@ -75,11 +75,6 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       href: "/dashboard/categories"
     },
     {
-      title: "Attributes",
-      icon: SendToBack,
-      href: "/dashboard/attributes"
-    },
-    {
       title: "Coupons",
       icon: ScanSearch,
       href: "/dashboard/coupons"

@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server"
+
 export async function POST(req) {
     try {
         const { title, slug, description, imageUrl } = await req.json()

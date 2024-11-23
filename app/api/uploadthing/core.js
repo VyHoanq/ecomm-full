@@ -10,4 +10,9 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url, metadata);
     }),
+    bannerImage: f({ image: { maxFileSize: "0.5MB" } })
+    // Set permissions and file types for this FileRoute
+    .onUploadComplete(async ({ metadata, file }) => {
+      console.log("file url", file.url, metadata);
+    }),
 };
