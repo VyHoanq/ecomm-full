@@ -1,8 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
-import ImageInput from '@/components/form/FormInput/ImageInput'
-import TextareaInput from '@/components/form/FormInput/TextAreaInput'
-import TextInput from '@/components/form/FormInput/TextInput'
+import { ImageInput, SelectInput, TextAreaInput, TextInput } from '@/components/form/FormInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateSlug } from '@/lib/generateSlug'
@@ -14,7 +12,6 @@ export default function NewCategory() {
   const { register, reset, handleSubmit, formState: { errors } } = useForm()
   const [loading, setLoading] = useState(false)
   async function onSubmit(data) {
-
     setLoading(true)
     const slug = generateSlug(data.title)
     data.slug = slug
@@ -23,6 +20,11 @@ export default function NewCategory() {
     makePostRequest(setLoading, 'api/categories', data, 'Category', reset,)
     setImageUrl("")
   }
+  const markets = [
+    { id: 1, title: 'Market 1' },
+    { id: 2, title: 'Market 2' },
+    { id: 3, title: 'Market 3' }, 
+  ]
   return (
     <>
       <FormHeader title='Category' />
@@ -31,8 +33,9 @@ export default function NewCategory() {
       >
 
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
-          <TextInput label="Category Title" name="title" register={register} errors={errors} isRequired={true} />
-          <TextareaInput label="Category Description" name="description" register={register} errors={errors} isRequired={true} />
+          <TextInput label="Category Title" name="title" register={register} errors={errors} isRequired={true} className='w-full' />
+          <SelectInput label="Select Market" name="marketId" register={register} errors={errors} isRequired={true} options={markets} hasMultiple={false} className='w-full' />
+          <TextAreaInput label="Category Description" name="description" register={register} errors={errors} isRequired={true} />
           <ImageInput label="Category Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="categoryImage" />
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Category' loadingButtonTitle='Category' />
