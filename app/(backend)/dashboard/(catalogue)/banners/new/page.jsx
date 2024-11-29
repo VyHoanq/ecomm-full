@@ -1,5 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
+import { ToggleInput } from '@/components/form/FormInput'
 import ImageInput from '@/components/form/FormInput/ImageInput'
 import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
@@ -10,7 +11,12 @@ import { useForm } from 'react-hook-form'
 export default function NewBanner() {
   const [imageUrl, setImageUrl] = useState("")
   const [loading, setLoading] = useState(false)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      isActive: true
+    }
+  })
+  const isActive = watch("isActive")
   async function onSubmit(data) {
 
     setLoading(true)
@@ -29,8 +35,9 @@ export default function NewBanner() {
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
           <TextInput label="Banner Title" name="title" register={register} errors={errors} isRequired={true} />
           <TextInput label="Banner Link" name="link" type="url" register={register} errors={errors} isRequired={true} />
-          
+
           <ImageInput label="Banner Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="bannerImage" />
+          <ToggleInput label="Publish the Banner" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Banner' loadingButtonTitle='Banner' />
       </form>

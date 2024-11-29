@@ -7,7 +7,7 @@ export default function ArrayItemInput({ setItems, items = [], itemTitle }) {
     const [item, setItem] = useState("")
     const [showTagForm, setShowTagForm] = useState(false)
     function addItem(item) {
-        if(!item) return ;
+        if (!item) return;
         setItems([...items, item])
         setItem("")
     }

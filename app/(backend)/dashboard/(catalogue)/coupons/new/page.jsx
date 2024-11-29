@@ -1,5 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
+import { ToggleInput } from '@/components/form/FormInput'
 import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
@@ -8,7 +9,12 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export default function NewCoupon() {
-  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm()
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      isActive: true
+    }
+  })
+  const isActive = watch("isActive")
   const [couponCode, setCouponCode] = useState()
   const [loading, setLoading] = useState(false)
 
@@ -29,8 +35,9 @@ export default function NewCoupon() {
       >
 
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
-          <TextInput label="Coupon Title" name="title" register={register} errors={errors} isRequired={true} />
+          <TextInput label="Coupon Title" name="title" register={register} errors={errors} isRequired={true} className='w-full' />
           <TextInput label="Coupon Expiry Date" name="expiryDate" register={register} errors={errors} isRequired={true} type='date' className='w-full' />
+          <ToggleInput label="Publish the Coupon" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Coupon' loadingButtonTitle='Coupon' />
       </form>

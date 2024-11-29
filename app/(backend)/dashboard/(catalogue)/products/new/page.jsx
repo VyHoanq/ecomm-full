@@ -1,18 +1,22 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
-import { ImageInput, SelectInput, TextAreaInput, TextInput } from '@/components/form/FormInput'
+import { ImageInput, SelectInput, TextAreaInput, TextInput, ToggleInput } from '@/components/form/FormInput'
 import ArrayItemInput from '@/components/form/FormInput/ArrayItemInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateSlug } from '@/lib/generateSlug'
-import { CirclePlusIcon, PlusSquare, XOctagon } from 'lucide-react'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export default function NewProduct() {
   const [imageUrl, setImageUrl] = useState("")
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      isActive: true
+    }
+  })
   const [loading, setLoading] = useState(false)
+  const isActive = watch("isActive")
   async function onSubmit(data) {
     setLoading(true)
     const slug = generateSlug(data.title)
@@ -54,6 +58,10 @@ export default function NewProduct() {
           <ImageInput label="Product Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="productImage" />
           {/* Tags */}
           <ArrayItemInput items={tags} setItems={setTags} itemTitle='Tag' />
+
+          <ToggleInput label="Publish the Product" name="isActive" trueTitle="Active" falseTitle="Draft" register={register}
+          />
+
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Product' loadingButtonTitle='Product' />
       </form>

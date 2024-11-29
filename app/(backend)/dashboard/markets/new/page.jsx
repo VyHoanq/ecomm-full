@@ -1,5 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
+import { ToggleInput } from '@/components/form/FormInput'
 import ImageInput from '@/components/form/FormInput/ImageInput'
 import TextareaInput from '@/components/form/FormInput/TextAreaInput'
 import TextInput from '@/components/form/FormInput/TextInput'
@@ -12,7 +13,12 @@ import { useForm } from 'react-hook-form'
 export default function NewMarket() {
   const [logoUrl, setLogoUrl] = useState("")
   const [loading, setLoading] = useState(false)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      isActive: true
+    }
+  })
+  const isActive = watch("isActive")
   async function onSubmit(data) {
     const slug = generateSlug(data.title)
     data.slug = slug
@@ -33,6 +39,7 @@ export default function NewMarket() {
           <TextInput label="Market Title" name="title" register={register} errors={errors} isRequired={true} />
           <ImageInput label="Market Logo" setImageUrl={setLogoUrl} imageUrl={logoUrl} endpoint="marketImage" />
           <TextareaInput label="Market Description" name="description" register={register} errors={errors} isRequired={true} />
+          <ToggleInput label="Publish the Market" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Market' loadingButtonTitle='Market' />
       </form>
