@@ -6,6 +6,7 @@ import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateUseCode } from '@/lib/generateUseCode'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -16,10 +17,11 @@ export default function NewFarmer() {
     }
   })
   const isActive = watch("isActive")
-
-  // const [couponCode, setCouponCode] = useState()
   const [loading, setLoading] = useState(false)
-
+  const router = useRouter()
+  function redirect() {
+    router.push('/dashboard/farmers')
+  }
 
   {/* id, title, code, expiryDate, discount, status */ }
 
@@ -27,7 +29,7 @@ export default function NewFarmer() {
     const farmerUniqueCode = generateUseCode('LFF', data.name)
     data.code = farmerUniqueCode
     console.log(data)
-    makePostRequest(setLoading, 'api/farmers', data, 'Farmer', reset,)
+    makePostRequest(setLoading, 'api/farmers', data, 'Farmer', reset, redirect)
   }
   return (
     <>
