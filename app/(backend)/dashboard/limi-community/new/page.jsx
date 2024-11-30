@@ -28,9 +28,9 @@ export default function NewTraining() {
     data.imageUrl = imageUrl;
     data.content = content;
     console.log(data);
-    // Uncomment this line to enable the API request
-    // makePostRequest(setLoading, 'api/categories', data, 'Category', reset);
+    makePostRequest(setLoading, 'api/trainings', data, 'Training', reset);
     setImageUrl("");
+    setContent("")
   }
 
   const categories = [

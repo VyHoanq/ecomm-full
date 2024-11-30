@@ -24,7 +24,7 @@ export default function NewStaff() {
   {/* id, title, code, expiryDate, discount, status */ }
 
   async function onSubmit(data) {
-    const farmerUniqueCode = generateUseCode('LFF', data.name)
+    const farmerUniqueCode = generateUseCode('LSM', data.name)
     data.code = farmerUniqueCode
     console.log(data)
     makePostRequest(setLoading, 'api/staffs', data, 'Staff', reset,)
@@ -37,9 +37,11 @@ export default function NewStaff() {
       >
 
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
-          <TextInput label="Staff's Full Name" name="name" register={register} errors={errors} isRequired={true} />
+          <TextInput label="NIN_ID" name="nin" register={register} errors={errors} isRequired={true}/>
+          <TextInput label="Staff's Full Name" name="name" register={register} errors={errors} isRequired={true} className='w-full' />
           <TextInput label="Password" name="password" type='password' register={register} errors={errors} isRequired={true} className='w-full' />
           <TextInput label="Staff's Email" name="email" type='email' register={register} errors={errors} isRequired={true} className='w-full' />
+          <TextInput label="Day of Birth" name="dob" type='date' register={register} errors={errors} isRequired={true} className='w-full' />
           <TextInput label="Staff's Address" name="address" register={register} errors={errors} isRequired={true} className='w-full' />
           <TextInput label="Staff's Contact" name="contact" register={register} errors={errors} isRequired={true} className='w-full' />
           <TextareaInput label="Notes" name="notes" register={register} errors={errors} isRequired={false} />
