@@ -5,6 +5,8 @@ import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateCouponCode } from '@/lib/generateCouponCode'
+import { generateIsoFormattedDate } from '@/lib/generateIsoFormattedDate'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -21,11 +23,17 @@ export default function NewCoupon() {
 
   {/* id, title, code, expiryDate, discount, status */ }
 
+  const router = useRouter()
+  function redirect() {
+    router.push('/dashboard/coupons')
+  }
   async function onSubmit(data) {
     const couponCode = generateCouponCode(data.title, data.expiryDate)
+    const isoFormattedDate = generateIsoFormattedDate(data.expiryDate)
+    data.expiryDate = isoFormattedDate
     data.couponCode = couponCode
     console.log(data)
-    makePostRequest(setLoading, 'api/coupons', data, 'Coupon', reset,)
+    makePostRequest(setLoading, 'api/coupons', data, 'Coupon', reset, redirect)
   }
   return (
     <>

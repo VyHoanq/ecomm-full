@@ -5,6 +5,7 @@ import ImageInput from '@/components/form/FormInput/ImageInput'
 import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -17,12 +18,16 @@ export default function NewBanner() {
     }
   })
   const isActive = watch("isActive")
+  const router = useRouter()
+  function redirect() {
+    router.push('/dashboard/banners')
+  }
   async function onSubmit(data) {
 
     setLoading(true)
     data.imageUrl = imageUrl
     console.log(data)
-    makePostRequest(setLoading, 'api/banners', data, 'Banner', reset,)
+    makePostRequest(setLoading, 'api/banners', data, 'Banner', reset, redirect)
     setImageUrl("")
   }
   return (
