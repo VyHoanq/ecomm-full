@@ -11,7 +11,7 @@ export default function page() {
                     <button type="submit" className="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2">Read More</button>
                 </div>
             </div>
-            <RegisterForm role="USER"/>
+            <RegisterForm role="FARMER" />
         </div>
     )
 }
