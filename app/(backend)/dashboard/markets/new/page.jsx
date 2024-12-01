@@ -1,6 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
-import { ToggleInput } from '@/components/form/FormInput'
+import { SelectInput, ToggleInput } from '@/components/form/FormInput'
 import ImageInput from '@/components/form/FormInput/ImageInput'
 import TextareaInput from '@/components/form/FormInput/TextAreaInput'
 import TextInput from '@/components/form/FormInput/TextInput'
@@ -18,6 +18,12 @@ export default function NewMarket() {
       isActive: true
     }
   })
+
+  const categories = [
+    { id: 1, title: 'Market 1' },
+    { id: 2, title: 'Market 2' },
+    { id: 3, title: 'Market 3' },
+  ]
   const isActive = watch("isActive")
   async function onSubmit(data) {
     const slug = generateSlug(data.title)
@@ -36,7 +42,8 @@ export default function NewMarket() {
       >
 
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
-          <TextInput label="Market Title" name="title" register={register} errors={errors} isRequired={true} />
+          <TextInput label="Market Title" name="title" register={register} errors={errors} isRequired={true} className='w-full' />
+          <SelectInput label="Select Categories" name="categoryIds" register={register} errors={errors} isRequired={true} options={categories} hasMultiple={false} className='w-full' />
           <ImageInput label="Market Logo" setImageUrl={setLogoUrl} imageUrl={logoUrl} endpoint="marketImage" />
           <TextareaInput label="Market Description" name="description" register={register} errors={errors} isRequired={true} />
           <ToggleInput label="Publish the Market" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />

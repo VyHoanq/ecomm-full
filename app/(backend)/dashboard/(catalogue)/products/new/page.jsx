@@ -50,10 +50,10 @@ export default function NewProduct() {
           <TextInput label="Product Title" name="title" register={register} errors={errors} isRequired={true} />
           <SelectInput label="Select Category" name="categoryId" register={register} errors={errors} isRequired={true} options={categories} className='w-full' />
           <SelectInput label="Select Farmer" name="farmerId" register={register} errors={errors} isRequired={true} options={farmers} className='w-full' />
-          <TextInput label="Product SKU" name="sku" register={register} errors={errors} isRequired={true} />
-          <TextInput label="Product Barcode" name="barcode" register={register} errors={errors} isRequired={true} />
-          <TextInput label="Product Price (Before Discount)" name="productPrice" type='number' register={register} errors={errors} isRequired={true} />
-          <TextInput label="Product Sale Price (Discounted)" name="salePrice" type='number' register={register} errors={errors} isRequired={true} />
+          <TextInput label="Product SKU" name="sku" register={register} errors={errors} isRequired={true} className='w-full' />
+          <TextInput label="Product Barcode" name="barcode" register={register} errors={errors} isRequired={true} className='w-full' />
+          <TextInput label="Product Price (Before Discount)" name="productPrice" type='number' register={register} errors={errors} isRequired={true} className='w-full' />
+          <TextInput label="Product Sale Price (Discounted)" name="salePrice" type='number' register={register} errors={errors} isRequired={true} className='w-full' />
           <TextAreaInput label="Product Description" name="description" register={register} errors={errors} isRequired={true} />
           <ImageInput label="Product Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="productImage" />
           {/* Tags */}

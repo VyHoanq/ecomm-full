@@ -20,6 +20,11 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url, metadata);
     }),
+    farmerProfileImage: f({ image: { maxFileSize: "1MB" } })
+    // Set permissions and file types for this FileRoute
+    .onUploadComplete(async ({ metadata, file }) => {
+      console.log("file url", file.url, metadata);
+    }),
     productImage: f({ image: { maxFileSize: "1MB" } })
     // Set permissions and file types for this FileRoute
     .onUploadComplete(async ({ metadata, file }) => {

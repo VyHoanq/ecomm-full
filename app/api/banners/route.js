@@ -15,3 +15,19 @@ export async function POST(req) {
 
     }
 }
+export async function GET(req) {
+    try {
+        const banners = await db.banner.findMany({
+            orderBy: {
+                createdAt : "desc"
+            }
+        })
+        return NextResponse.json(banners)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            message: "Failed to fetch banner",
+            error
+        }, { status: 500 })
+    }
+}

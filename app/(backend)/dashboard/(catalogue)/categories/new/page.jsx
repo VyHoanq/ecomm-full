@@ -4,6 +4,7 @@ import { ImageInput, SelectInput, TextAreaInput, TextInput, ToggleInput } from '
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateSlug } from '@/lib/generateSlug'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -16,20 +17,24 @@ export default function NewCategory() {
   })
   const isActive = watch("isActive")
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  function redirect() {
+    router.push('/dashboard/categories')
+  }
   async function onSubmit(data) {
     setLoading(true)
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
     console.log(data)
-    makePostRequest(setLoading, 'api/categories', data, 'Category', reset,)
+    makePostRequest(setLoading, 'api/categories', data, 'Category', reset, redirect)
     setImageUrl("")
   }
-  const markets = [
-    { id: 1, title: 'Market 1' },
-    { id: 2, title: 'Market 2' },
-    { id: 3, title: 'Market 3' },
-  ]
+  // const markets = [
+  //   { id: 1, title: 'Market 1' },
+  //   { id: 2, title: 'Market 2' },
+  //   { id: 3, title: 'Market 3' },
+  // ]
   return (
     <>
       <FormHeader title='Category' />
@@ -38,8 +43,8 @@ export default function NewCategory() {
       >
 
         <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
-          <TextInput label="Category Title" name="title" register={register} errors={errors} isRequired={true} className='w-full' />
-          <SelectInput label="Select Market" name="marketId" register={register} errors={errors} isRequired={true} options={markets} hasMultiple={false} className='w-full' />
+          <TextInput label="Category Title" name="title" register={register} errors={errors} isRequired={true} />
+
           <TextAreaInput label="Category Description" name="description" register={register} errors={errors} isRequired={true} />
           <ImageInput label="Category Image" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="categoryImage" />
           <ToggleInput label="Publish the Category" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />

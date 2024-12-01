@@ -1,6 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
-import { ToggleInput } from '@/components/form/FormInput'
+import { ImageInput, ToggleInput } from '@/components/form/FormInput'
 import TextareaInput from '@/components/form/FormInput/TextAreaInput'
 import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
@@ -17,6 +17,7 @@ export default function NewFarmer() {
     }
   })
   const isActive = watch("isActive")
+  const [logoUrl, setLogoUrl] = useState("")
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   function redirect() {
@@ -45,6 +46,7 @@ export default function NewFarmer() {
           <TextInput label="Farmer's Address" name="address" register={register} errors={errors} isRequired={true} className='w-full' />
           <TextInput label="Farmer's Contact" name="contact" register={register} errors={errors} isRequired={true} className='w-full' />
           <TextareaInput label="Farmer's Payment Details" name="payment" register={register} errors={errors} isRequired={true} className='w-full' />
+          <ImageInput label="Farmer's Profile" setImageUrl={setLogoUrl} imageUrl={logoUrl} endpoint="farmerProfileImage" />
           <TextareaInput label="Notes" name="notes" register={register} errors={errors} isRequired={false} className='w-full' />
           <ToggleInput label="Publish the Farmer" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />
         </div>

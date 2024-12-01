@@ -2,8 +2,8 @@ import { NextResponse } from "next/server"
 
 export async function POST(req) {
     try {
-        const { address, contact, email, name, notes, payment, phone } = await req.json()
-        const newFarmer = { address, contact, email, name, notes, payment, phone }
+        const { address, contact, email, name, notes, payment, phone, isActive, profileImageUrl } = await req.json()
+        const newFarmer = { address, contact, email, name, notes, payment, phone, isActive, profileImageUrl }
         console.log(newFarmer)
         return NextResponse.json(newFarmer)
     } catch (error) {
