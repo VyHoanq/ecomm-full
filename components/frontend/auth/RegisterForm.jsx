@@ -10,7 +10,7 @@ import SubmitButton from '@/components/form/SubmitButton';
 import { TextInput } from '@/components/form/FormInput';
 
 
-export default function RegisterForm({ role }) {
+export default function RegisterForm({ role = "USER" }) {
     const router = useRouter();
     const {
         register,
@@ -39,7 +39,12 @@ export default function RegisterForm({ role }) {
                 setLoading(false);
                 toast.success("User Created Successfully");
                 reset();
-                // router.push("/login");
+                if (role === "USER") {
+                    router.push("/")
+                }
+                else {
+                    router.push(`/onboarding/${responseData.data.id}`)
+                }
             } else {
                 setLoading(false);
                 if (res.status === 409) {
@@ -61,7 +66,7 @@ export default function RegisterForm({ role }) {
         <div className="flex w-1/2 justify-around items-center bg-white">
             <form onSubmit={handleSubmit(onSubmit)} className="">
                 <h1 className="text-gray-800 font-bold text-3xl uppercase mb-6 leading-6" >Create a new account</h1>
-                <TextInput label="Role" name="role" register={register} errors={errors} type="text" className="sm:col-span-2 mb-3" defaultValue={role} />
+                <TextInput label="" name="role" register={register} errors={errors} type="hidden" className="sm:col-span-2 mb-3" defaultValue={role}/>
                 <TextInput label="Your Name" name="name" register={register} errors={errors} type="text" className="sm:col-span-2 mb-3" />
                 <TextInput label="Email Address" name="email" register={register} errors={errors} type='email' className="sm:col-span-2 mb-3" />
                 {emailErr && <p className="text-red-500 text-sm">{emailErr}</p>}

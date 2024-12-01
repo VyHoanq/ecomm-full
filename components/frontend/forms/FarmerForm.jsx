@@ -1,6 +1,7 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
 import { ImageInput, ToggleInput } from '@/components/form/FormInput'
+import ArrayItemInput from '@/components/form/FormInput/ArrayItemInput'
 import TextareaInput from '@/components/form/FormInput/TextAreaInput'
 import TextInput from '@/components/form/FormInput/TextInput'
 import SubmitButton from '@/components/form/SubmitButton'
@@ -10,15 +11,17 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-export default function FarmerForm() {
+export default function FarmerForm({ user }) {
   const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      isActive: true
+      isActive: true,
+      ...user
     }
   })
   const isActive = watch("isActive")
-  const [logoUrl, setLogoUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
   const [loading, setLoading] = useState(false)
+  const [products, setProducts] = useState([])
   const router = useRouter()
   function redirect() {
     router.push('/dashboard/farmers')
@@ -29,8 +32,12 @@ export default function FarmerForm() {
   async function onSubmit(data) {
     const farmerUniqueCode = generateUseCode('LFF', data.name)
     data.code = farmerUniqueCode
+    data.profileImageUrl = imageUrl
+    data.products = products
+    data.userId = user.id
     console.log(data)
-    makePostRequest(setLoading, 'api/farmers', data, 'Farmer', reset, redirect)
+    makePostRequest(setLoading, 'api/farmers', data, 'Farmer Profile', reset, redirect)
+    setImageUrl("")
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}
@@ -43,8 +50,13 @@ export default function FarmerForm() {
         <TextInput label="Farmer's Email" name="email" type='email' register={register} errors={errors} isRequired={true} className='w-full' />
         <TextInput label="Farmer's Address" name="address" register={register} errors={errors} isRequired={true} className='w-full' />
         <TextInput label="Farmer's Contact" name="contact" register={register} errors={errors} isRequired={true} className='w-full' />
+        {/* Accare */}
+        <TextInput label="What is the size of your land in accare" name="landSize" type='number' register={register} errors={errors} isRequired={true} className='w-full' />
+        <TextInput label="What is your main Crop that you Cultivate" name="mainCrop" type='text' register={register} errors={errors} isRequired={true} className='w-full' />
+        <ArrayItemInput setItems={setProducts} items={products} itemTitle="Product" />
+        {/*  */}
         <TextareaInput label="Farmer's Payment Details" name="payment" register={register} errors={errors} isRequired={true} />
-        <ImageInput label="Farmer's Profile" setImageUrl={setLogoUrl} imageUrl={logoUrl} endpoint="farmerProfileImage" />
+        <ImageInput label="Farmer's Profile" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="farmerProfileImage" />
         <TextareaInput label="Notes" name="notes" register={register} errors={errors} isRequired={false} />
         <ToggleInput label="Publish the Farmer" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />
       </div>
