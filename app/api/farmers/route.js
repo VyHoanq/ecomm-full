@@ -1,35 +1,40 @@
+
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
     try {
         const farmerData = await req.json();
-
         const newFarmerProfile = await db.farmerProfile.create({
             data: {
                 address: farmerData.address,
+                code: farmerData.code,
                 contact: farmerData.contact,
                 email: farmerData.email,
                 name: farmerData.name,
                 notes: farmerData.notes,
                 payment: farmerData.payment,
                 phone: farmerData.phone,
-                isActive: farmerData.isActive ?? true,
-                profileImageUrl: farmerData.profileImageUrl || '',
-                products: farmerData.products ?? [],
-                landSize: parseFloat(farmerData.landSize) ,
+                isActive: farmerData.isActive,
+                imageUrl: farmerData.imageUrl,
+                products: farmerData.products,
+                landSize: parseFloat(farmerData.landSize),
                 mainCrop: farmerData.mainCrop,
-                userId: farmerData.userId
-            }
+                userId: farmerData.userId,
+            },
         });
-
-        console.log('Created Farmer Profile:', newFarmerProfile);
+        console.log("Created Farmer Profile:", newFarmerProfile);
         return NextResponse.json(newFarmerProfile);
+
     } catch (error) {
-        console.error('Error creating farmer profile:', error);
-        return NextResponse.json({ message: "Failed to create farmers", error }, { status: 500 });
+        console.error("Error creating farmer profile:", error.message);
+        return NextResponse.json(
+            { message: "Failed to create farmers", error: error.message },
+            { status: 500 }
+        );
     }
 }
+
 
 export async function GET(req) {
     try {

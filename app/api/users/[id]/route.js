@@ -1,15 +1,13 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function GET(req, context) {
+export async function GET(req, { params }) {
+  const { id } = await params
   try {
-    const { id } = await context.params; // Await params here
-
     const user = await db.user.findUnique({
-      where: { id },
-    });
-
-    return NextResponse.json(user);
+      where: { id, role: "FARMER" }
+    })
+    return NextResponse.json(user)
   } catch (error) {
     console.log(error);
     return NextResponse.json(
@@ -20,4 +18,5 @@ export async function GET(req, context) {
       { status: 500 }
     );
   }
+
 }

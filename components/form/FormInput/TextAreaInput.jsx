@@ -1,5 +1,5 @@
 "use client";
-export default function TextareaInput({
+export default function TextAreaInput({
     label,
     name,
     register,

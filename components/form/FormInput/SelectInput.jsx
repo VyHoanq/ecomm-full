@@ -27,10 +27,12 @@ export default function SelectInput({
                     {options.map((option, i) => {
                         return (
                             <option key={i} value={option.id}>
-                                {option.title}
+                                {option.title || option.name}
                             </option>
                         );
+                        console.log("Options for SelectInput:", options);
                     })}
+
                 </select>
             </div>
         </div>

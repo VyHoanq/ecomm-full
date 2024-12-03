@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 export async function POST(req) {
     try {
-        const { title, slug, description, logoUrl, isActive } = await req.json()
+        const { title, slug, description, logoUrl, isActive, categoryIds } = await req.json()
         const newMarket = { title, slug, description, logoUrl, isActive }
         console.log(newMarket)
         return NextResponse.json(newMarket)

@@ -64,10 +64,17 @@ model Product {
   imageUrl    String?
   description String?
   isActive    Boolean
+  isWholesale    Boolean
   sku         String?
   barcode     String?
+  productCode String?
+  unit        String?
+  salePrice   Float
   productPrice  Float
-  saleProducts  Float
+  wholesalePrice  Float
+  wholesaleQty  Int
+  productStock  Int
+  qty           Int
   tags        String[]
   
   category   Category  @relation(fields: [categoryId], references: [id])
@@ -120,7 +127,7 @@ model User {
 }
 model FarmerProfile {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  title      String    @unique
+  code       String
   address    String
   contact    String?
   email      String
@@ -129,7 +136,7 @@ model FarmerProfile {
   notes      String?
   payment    String?
   phone      String
-  profileImageUrl String?
+  imageUrl   String?
   isActive   Boolean
   products   String[]
   landSize   Float

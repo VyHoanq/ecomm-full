@@ -1,9 +1,6 @@
 'use client'
 import FormHeader from '@/components/form/FormHeader'
-import { ImageInput, ToggleInput } from '@/components/form/FormInput'
-import ArrayItemInput from '@/components/form/FormInput/ArrayItemInput'
-import TextareaInput from '@/components/form/FormInput/TextAreaInput'
-import TextInput from '@/components/form/FormInput/TextInput'
+import { ImageInput, ToggleInput, ArrayItemInput, TextAreaInput, TextInput } from '@/components/form/FormInput'
 import SubmitButton from '@/components/form/SubmitButton'
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateUseCode } from '@/lib/generateUseCode'
@@ -26,13 +23,10 @@ export default function FarmerForm({ user }) {
   function redirect() {
     router.push('/dashboard/farmers')
   }
-
-  {/* id, title, code, expiryDate, discount, status */ }
-
   async function onSubmit(data) {
-    const farmerUniqueCode = generateUseCode('LFF', data.name)
-    data.code = farmerUniqueCode
-    data.profileImageUrl = imageUrl
+    const code = generateUseCode('LFF', data.name)
+    data.code = code
+    data.imageUrl = imageUrl
     data.products = products
     data.userId = user.id
     console.log(data)
@@ -43,21 +37,19 @@ export default function FarmerForm({ user }) {
     <form onSubmit={handleSubmit(onSubmit)}
       className='w-full max-w-3xl mx-auto p-4 bg-neutral-50  border border-neutral-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-neutral-700 dark:border-neutral-600 my-3'
     >
-
       <div className='grid sm:grid-cols-2 gap-4 sm:gap-6'>
+
         <TextInput label="Farmer's Full Name" name="name" register={register} errors={errors} isRequired={true} />
         <TextInput label="Farmer's Phone Number" name="phone" type='tel' register={register} errors={errors} isRequired={true} className='w-full' />
         <TextInput label="Farmer's Email" name="email" type='email' register={register} errors={errors} isRequired={true} className='w-full' />
         <TextInput label="Farmer's Address" name="address" register={register} errors={errors} isRequired={true} className='w-full' />
         <TextInput label="Farmer's Contact" name="contact" register={register} errors={errors} isRequired={true} className='w-full' />
-        {/* Accare */}
         <TextInput label="What is the size of your land in accare" name="landSize" type='number' register={register} errors={errors} isRequired={true} className='w-full' />
         <TextInput label="What is your main Crop that you Cultivate" name="mainCrop" type='text' register={register} errors={errors} isRequired={true} className='w-full' />
         <ArrayItemInput setItems={setProducts} items={products} itemTitle="Product" />
-        {/*  */}
-        <TextareaInput label="Farmer's Payment Details" name="payment" register={register} errors={errors} isRequired={true} />
+        <TextAreaInput label="Farmer's Payment Details" name="payment" register={register} errors={errors} isRequired={true} />
         <ImageInput label="Farmer's Profile" setImageUrl={setImageUrl} imageUrl={imageUrl} endpoint="farmerProfileImage" />
-        <TextareaInput label="Notes" name="notes" register={register} errors={errors} isRequired={false} />
+        <TextAreaInput label="Notes" name="notes" register={register} errors={errors} isRequired={false} />
         <ToggleInput label="Publish the Farmer" name="isActive" trueTitle="Active" falseTitle="Draft" register={register} />
       </div>
       <SubmitButton isLoading={loading} buttonTitle='Create Farmer' loadingButtonTitle='Farmer' />
