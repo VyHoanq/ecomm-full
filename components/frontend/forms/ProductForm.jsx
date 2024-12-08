@@ -24,7 +24,7 @@ export default function ProductForm({ categories, farmers }) {
     const router = useRouter()
     function redirect() {
         router.push('/dashboard/products')
-      }
+    }
     async function onSubmit(data) {
         setLoading(true)
         const slug = generateSlug(data.title)
@@ -40,7 +40,7 @@ export default function ProductForm({ categories, farmers }) {
         setTags([])
     }
     return (
-        <>
+        <div>
             <FormHeader title='Product' />
             <form onSubmit={handleSubmit(onSubmit)}
                 className='w-full max-w-3xl mx-auto p-4 bg-neutral-50  border border-neutral-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-neutral-700 dark:border-neutral-600 my-3'
@@ -60,10 +60,10 @@ export default function ProductForm({ categories, farmers }) {
                     <ToggleInput label="Suopprts Wholesale Selling" name="isWholesale" trueTitle="Supported" falseTitle="Not Supported" register={register} />
                     {
                         isWholesale && (
-                            <>
+                            <div>
                                 <TextInput label="Wholesale Price" name="wholesalePrice" type='number' register={register} errors={errors} isRequired={true} className='w-full' />
                                 <TextInput label="Minimum Wholesale Qty" name="wholasaleQty" type='number' register={register} errors={errors} isRequired={true} className='w-full' />
-                            </>
+                            </div>
                         )
                     }
 
@@ -74,6 +74,6 @@ export default function ProductForm({ categories, farmers }) {
                 </div>
                 <SubmitButton isLoading={loading} buttonTitle='Create Product' loadingButtonTitle='Product' />
             </form>
-        </>
+        </div>
     )
 }

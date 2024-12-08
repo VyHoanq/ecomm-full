@@ -1,6 +1,5 @@
 import Providers from "@/context/Providers";
 import "@/styles/main.scss";
-import { Metadata } from "next";
 
 export const metadata = {
   title: "Create Next App",
@@ -9,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body>
         <Providers>
           {children}

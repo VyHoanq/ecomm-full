@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
+
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -85,5 +88,22 @@ export async function POST(req) {
       { message: "Failed to create product", error: error.message },
       { status: 500 }
     );
+  }
+}
+
+export async function GET(req) {
+  try {
+      const products = await db.product.findMany({
+          orderBy: {
+              createdAt : "desc"
+          }
+      })
+      return NextResponse.json(products)
+  } catch (error) {
+      console.log(error);
+      return NextResponse.json({
+          message: "Failed to fetch product",
+          error
+      }, { status: 500 })
   }
 }

@@ -106,21 +106,22 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
 
         {/* Catalogue */}
         <Collapsible className="px-6 py-2">
-          <CollapsibleTrigger onClick={() => setOpenMenu(!openMenu)}>
-            <button className="flex items-center space-x-6  py-2 ">
+          <CollapsibleTrigger asChild onClick={() => setOpenMenu(!openMenu)}>
+            <div className="flex items-center space-x-6  py-2 cursor-pointer">
               <div className="flex items-center space-x-3">
                 <Slack />
                 <span>Catalogue</span>
               </div>
               {openMenu ? <ChevronDownCircle /> : <CircleChevronUp />}
-            </button>
+            </div>
           </CollapsibleTrigger>
+
           <CollapsibleContent className="px-3 pl-6 bg-slate-100 dark:bg-neutral-900 text-sm rounded-lg py-3  ">
             {
               catalogueLinks.map((item, i) => {
                 const Icon = item.icon;
                 return (
-                  <Link 
+                  <Link
                     onClick={() => setShowSidebar(false)}
                     key={i} href={item.href} className={pathname === item.href ? "flex items-center space-x-3  border-green-600 text-green-600  py-2 " : "flex items-center space-x-3 py-2"}>
                     <Icon className="w-4 h-4" />
@@ -135,9 +136,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
           sidebarLinks.map((item, i) => {
             const Icon = item.icon;
             return (
-              <Link 
-              onClick={() => setShowSidebar(false)}
-              key={i} href={item.href} className={item.href === pathname ? "flex items-center space-x-3 border-l-4 border-green-600 text-green-600  px-6 py-2 " : "flex items-center space-x-3 px-6 py-2"}>
+              <Link
+                onClick={() => setShowSidebar(false)}
+                key={i} href={item.href} className={item.href === pathname ? "flex items-center space-x-3 border-l-4 border-green-600 text-green-600  px-6 py-2 " : "flex items-center space-x-3 px-6 py-2"}>
                 <Icon />
                 <span>{item.title}</span>
               </Link>

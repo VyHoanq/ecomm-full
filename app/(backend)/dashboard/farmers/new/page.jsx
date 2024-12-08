@@ -6,9 +6,9 @@ import React from 'react'
 export default function NewFarmer() {
 
   return (
-    <>
+    <div>
       <FormHeader title='Farmer' />
       <FarmerForm />
-    </>
+    </div>
   )
 }

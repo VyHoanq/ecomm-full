@@ -28,6 +28,10 @@ export default function NewCoupon() {
     router.push('/dashboard/coupons')
   }
   async function onSubmit(data) {
+    if (!data.expiryDate || isNaN(new Date(data.expiryDate).getTime())) {
+      alert("Invalid expiry date");
+      return;
+    }
     const couponCode = generateCouponCode(data.title, data.expiryDate)
     const isoFormattedDate = generateIsoFormattedDate(data.expiryDate)
     data.expiryDate = isoFormattedDate
@@ -36,7 +40,7 @@ export default function NewCoupon() {
     makePostRequest(setLoading, 'api/coupons', data, 'Coupon', reset, redirect)
   }
   return (
-    <>
+    <div>
       <FormHeader title='Coupon' />
       <form onSubmit={handleSubmit(onSubmit)}
         className='w-full max-w-3xl mx-auto p-4 bg-neutral-50  border border-neutral-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-neutral-700 dark:border-neutral-600 my-3'
@@ -49,6 +53,6 @@ export default function NewCoupon() {
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Coupon' loadingButtonTitle='Coupon' />
       </form>
-    </>
+    </div>
   )
 }

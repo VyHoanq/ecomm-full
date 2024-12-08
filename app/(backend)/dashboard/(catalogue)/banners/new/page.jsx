@@ -31,7 +31,7 @@ export default function NewBanner() {
     setImageUrl("")
   }
   return (
-    <>
+    <div>
       <FormHeader title='Banner' />
       <form onSubmit={handleSubmit(onSubmit)}
         className='w-full max-w-3xl mx-auto p-4 bg-neutral-50  border border-neutral-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-neutral-700 dark:border-neutral-600 my-3'
@@ -46,6 +46,6 @@ export default function NewBanner() {
         </div>
         <SubmitButton isLoading={loading} buttonTitle='Create Banner' loadingButtonTitle='Banner' />
       </form>
-    </>
+    </div>
   )
 }
