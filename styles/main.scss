@@ -90,3 +90,37 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.swiper-container {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    
+    &::after {
+      display: none;     }
+  }
+
+  .swiper-button-prev {
+    left: 5px;
+  }
+
+  .swiper-button-next {
+    right: 5px;
+  }
+
+  // Tùy chỉnh màu và kích thước của dots
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #a1a1aa;
+    opacity: 0.5;
+    
+    &-active {
+      opacity: 1;
+      background: #e5e5e5;
+    }
+  }
+}

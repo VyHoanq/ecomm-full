@@ -10,14 +10,14 @@ import HelpModal from '../models/HelpModal'
 export default function Navbar() {
     return (
         <div className='bg-gray-50 dark:bg-neutral-900'>
-            <div className='flex items-center justify-center py-3 max-w-7xl mx-auto px-8 gap-8'>
+            <div className='flex items-center justify-between  py-3 max-w-7xl mx-auto px-8 gap-8'>
                 <Link className='' href="/">
                     <Image src={logo} alt='logo' className='w-24' />
                 </Link>
                 <div className='flex-grow'>
                     <SearchForm />
                 </div>
-                <div className='flex gap-8'>
+                <div className='flex items-center gap-8'>
                     <Link href="/login" className='flex items-center space-x-1 text-black dark:text-white'>
                         <UserCircle2 />
                         <span>Login</span>

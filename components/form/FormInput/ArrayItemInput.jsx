@@ -18,7 +18,7 @@ export default function ArrayItemInput({ setItems, items = [], itemTitle }) {
     }
     // End Tags
     return (
-        <div className='sm:col-span-2 '>
+        <div className='col-span-1 sm:col-span-2 space-y-3 '>
             {
                 showTagForm ? (
                     <div className="flex items-center gap-2">

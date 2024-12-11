@@ -1,3 +1,6 @@
 DarkMode 
 - npm install next-themes
 - npm install react-icons
+
+
+    "nuka-carousel": "^8.1.1",

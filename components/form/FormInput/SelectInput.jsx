@@ -4,7 +4,7 @@ export default function SelectInput({
     label,
     name,
     register,
-    className = "sm:col-span-2",
+    className = "col-span-1 sm:col-span-2",
     options = [],
     hasMultiple = false
 }) {

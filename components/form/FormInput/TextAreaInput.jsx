@@ -5,7 +5,7 @@ export default function TextAreaInput({
     register,
     errors,
     isRequired = true,
-    className = "sm:col-span-2",
+    className = "col-span-1 sm:col-span-2",
 }) {
     return (
         <div className={className}>

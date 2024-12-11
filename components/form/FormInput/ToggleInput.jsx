@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ToggleInput({ label, name, trueTitle, falseTitle, register, className="sm:col-span-2 flex "}) {
+export default function ToggleInput({ label, name, trueTitle, falseTitle, register, className="sm:col-span-2 flex flex-col sm:flex-2 gap-2 "}) {
     return (
         <div className={className}>
             <div className='w-full'>

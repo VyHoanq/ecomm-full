@@ -60,7 +60,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
     {
       title: "Online Store",
       icon: LucideExternalLink,
-      href: "/dashboard/online-store"
+      href: "/"
     }
   ]
   const catalogueLinks = [
